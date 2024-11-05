@@ -69,7 +69,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $user_role === 'faculty') {
 
             <?php if ($user_role === 'faculty'): ?>
                 <h2 class="text-2xl">Add New Curriculum</h2>
-                <div class="bg-gray-300 rounded-lg shadow p-6 mb-6">
+                <div class="bg-gray-200 border border-1 border-zinc-300 rounded-lg shadow p-6 mb-6">
                     <form method="POST">
                         <div class="mb-4">
                             <label class="block mb-2 text-sm font-semibold" for="subject_name">Subject Name:</label>

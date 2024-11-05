@@ -100,14 +100,14 @@ $studentsResult = mysqli_query($conn, $studentsQuery);
 
             <h1 class="text-3xl font-bold mb-6">Attendance</h1>
 
-            <div class="bg-gray-300 rounded-lg shadow p-6 mb-6">
+            <div class="bg-gray-200 border border-1 border-zinc-300 rounded-lg shadow p-6 mb-6">
                 <form method="POST" id="attendanceForm">
                     <div class="mb-4">
                         <label class="block mb-2 text-sm font-semibold" for="attendance_date">Attendance Date:</label>
                         <input type="date" name="attendance_date" class="border rounded w-full p-2 focus:outline-none focus:ring-2 focus:ring-blue-500" required>
                     </div>
 
-                    <table class="min-w-full border-collapse border border-gray-200">
+                    <table class="min-w-full border-collapse border border-gray-200 bg-white">
                         <thead>
                             <tr>
                                 <th class="border border-gray-300 px-4 py-2">Student Name</th>

@@ -79,7 +79,7 @@ $booksResult = mysqli_stmt_get_result($stmt);
 
             <?php if ($user_role === 'faculty'): ?>
                 <h2 class="text-2xl">Add New Book</h2>
-                <div class="bg-gray-300 rounded-lg shadow p-6 mb-6">
+                <div class="bg-gray-200 border border-1 border-zinc-300 rounded-lg shadow p-6 mb-6">
                     <form method="POST">
                         <div class="mb-4">
                             <label class="block mb-2 text-sm font-semibold" for="title">Title:</label>
@@ -104,7 +104,7 @@ $booksResult = mysqli_stmt_get_result($stmt);
 
 
             <form method="POST" class="mb-4 flex items-center">
-                <input type="text" name="search" placeholder="Search books by title or author" class="border rounded-full rounded-r-none pl-4 w-full bg-gray-300 p-2 focus:outline-none focus:ring-2 h-[45px] focus:ring-blue-500" value="<?= htmlspecialchars($searchTerm) ?>">
+                <input type="text" name="search" placeholder="Search books by title or author" class="border rounded-full rounded-r-none pl-4 w-full bg-gray-200 border border-2 border-gray-300 border-r-transparent p-2 focus:outline-none focus:ring-2 h-[45px] focus:ring-blue-500" value="<?= htmlspecialchars($searchTerm) ?>">
                 <button class=" text-white px-4 py-2 h-[45px] rounded transition duration-200 bg-[#00bbff] rounded-l-none rounded-r-full flex items-center justify-center" type="submit">
                     <span class="material-icons">search</span>
                 </button>
