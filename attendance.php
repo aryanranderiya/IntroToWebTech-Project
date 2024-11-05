@@ -1,5 +1,5 @@
 <?php
-include 'config.php'; // Include your database connection file
+include './utils/config.php'; // Include your database connection file
 if ($_COOKIE['user_role'] !== 'faculty') {
     // Redirect to the desired page
     header('Location: index.php');
@@ -108,11 +108,11 @@ $studentsResult = mysqli_query($conn, $studentsQuery);
 </head>
 
 <body class="bg-gray-100 text-gray-800 max-h-screen overflow-hidden">
-    <?php include 'navbar.php'; ?>
+    <?php include './components/navbar.php'; ?>
 
     <div class="mx-auto flex">
         <!-- Sidebar -->
-        <?php include 'sidebar.php'; ?>
+        <?php include './components/sidebar.php'; ?>
 
         <main class="py-8 px-6 overflow-y-scroll max-h-[calc(100vh-70px)] h-full w-full flex flex-col gap-6">
 

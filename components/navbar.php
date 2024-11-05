@@ -1,5 +1,5 @@
     <?php
-    include_once 'config.php';
+    include_once './utils/config.php';
 
     // Initialize variables
     $username = '';
@@ -31,7 +31,7 @@
 
             <?php if ($username): ?> <!-- Check if username is set -->
                 <span class="text-gray-700">Welcome, <?= $username ?>!</span>
-                <a href="logout.php" class="text-gray-200 hover:text-white flex items-center font-semibold">
+                <a href="./utils/logout.php" class="text-gray-200 hover:text-white flex items-center font-semibold">
                     <span class="material-icons mr-1">logout</span> Logout
                 </a>
             <?php else: ?>

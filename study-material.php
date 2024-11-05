@@ -1,5 +1,5 @@
 <?php
-include 'config.php'; // Include your database connection file
+include './utils/config.php'; // Include your database connection file
 
 // Check if the user is faculty
 $isFaculty = $_COOKIE['user_role'] === 'faculty';
@@ -49,10 +49,10 @@ $materialsResult = mysqli_query($conn, $materialsQuery);
 </head>
 
 <body class="bg-gray-100 text-gray-800 max-h-screen overflow-hidden">
-    <?php include 'navbar.php'; ?>
+    <?php include './components/navbar.php'; ?>
     <div class="mx-auto flex">
 
-        <?php include 'sidebar.php'; ?>
+        <?php include './components/sidebar.php'; ?>
         <main class="py-8 px-6 overflow-y-scroll max-h-[calc(100vh-70px)] h-full w-full flex flex-col gap-6">
             <h1 class="text-3xl font-bold mb-6">
 
@@ -95,7 +95,7 @@ $materialsResult = mysqli_query($conn, $materialsQuery);
                                 <td class="border border-gray-300 px-4 py-2"><?= htmlspecialchars($row['upload_date']) ?></td>
                                 <td class="border border-gray-300 px-4 py-2">
                                     <a href="<?= htmlspecialchars($row['file_path']) ?>" target="_blank" class="text-blue-500 hover:underline">View</a>
-                                    <form method="POST" action="delete_studymaterial.php" class="inline">
+                                    <form method="POST" action="./utils/delete_studymaterial.php" class="inline">
                                         <input type="hidden" name="id" value="<?= $row['id'] ?>">
                                         <button type="submit" class="text-red-500 hover:underline" onclick="return confirm('Are you sure you want to delete this item?');">Delete</button>
                                     </form>

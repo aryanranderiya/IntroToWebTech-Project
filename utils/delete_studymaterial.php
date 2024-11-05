@@ -15,9 +15,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id'])) {
         $fileData = mysqli_fetch_assoc($result);
         $filePath = $fileData['file_path'];
 
-        // You can check if the file exists locally or if you just want to prevent deletion.
-        // For now, we assume it is okay to delete the database entry.
-
         // Proceed with deletion from the database
         $deleteQuery = "DELETE FROM study_materials WHERE id = ?";
         $deleteStmt = mysqli_prepare($conn, $deleteQuery);

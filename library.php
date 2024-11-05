@@ -1,5 +1,5 @@
 <?php
-include 'config.php'; // Include your database connection file
+include './utils/config.php'; // Include your database connection file
 
 // Check user role (assuming the role is stored in session)
 $user_role = $_COOKIE['user_role'] ?? 'student';
@@ -67,11 +67,11 @@ $booksResult = mysqli_stmt_get_result($stmt);
 </head>
 
 <body class="bg-gray-100 text-gray-800 max-h-screen overflow-hidden">
-    <?php include 'navbar.php'; ?>
+    <?php include './components/navbar.php'; ?>
 
     <div class="mx-auto flex">
         <!-- Sidebar -->
-        <?php include 'sidebar.php'; ?>
+        <?php include './components/sidebar.php'; ?>
 
         <main class="py-8 px-6 overflow-y-scroll max-h-[calc(100vh-70px)] h-full w-full flex flex-col gap-6">
 

@@ -5,5 +5,5 @@ setcookie("user_id", "", time() - 3600, "/");
 setcookie("user_role", "", time() - 3600, "/");
 
 // Redirect to the login page
-header("Location: login.php");
+header("Location: ../login.php");
 exit();

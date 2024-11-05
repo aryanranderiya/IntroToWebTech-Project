@@ -1,5 +1,5 @@
 <?php
-include_once 'config.php';
+include_once './utils/config.php';
 
 $error_message = ''; // Initialize the error message variable
 

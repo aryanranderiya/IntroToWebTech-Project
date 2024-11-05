@@ -1,5 +1,5 @@
 <?php
-include_once 'config.php';
+include_once './utils/config.php';
 
 $username = '';
 $user_role = '';
@@ -37,15 +37,15 @@ if (isset($_COOKIE['user_id'])) {
 
 <body class="bg-gray-100 text-gray-800 max-h-screen overflow-hidden">
 
-    <?php include 'navbar.php'; ?>
+    <?php include './components/navbar.php'; ?>
 
     <div class="mx-auto flex">
 
-        <?php include 'sidebar.php'; ?>
+        <?php include './components/sidebar.php'; ?>
         <main class="py-8 px-6 overflow-y-scroll max-h-[calc(100vh-70px)] h-full w-full flex flex-wrap gap-6 bg-zinc-100">
 
             <?php if ($user_role === 'faculty'): ?>
-                <section id="attendance" class="bg-white  rounded-2xl shadow-lg max-w-[20vw] min-w-[20vw] w-[20vw] min-h-full flex flex-col justify-between hover:shadow-xl transition-shadow duration-300">
+                <section id="attendance" class="bg-white  rounded-2xl shadow-lg max-w-[25vw] min-w-[25vw] w-[25vw] min-h-full flex flex-col justify-between hover:shadow-xl transition-shadow duration-300">
 
                     <img src="./assets/attendance.png" alt="Attendance" class="rounded-t-lg w-full max-h-[200px] h-[200px] object-cover object-top ">
 
@@ -62,7 +62,7 @@ if (isset($_COOKIE['user_id'])) {
                 </section>
             <?php endif; ?>
 
-            <section id="study-material" class="bg-white  rounded-2xl shadow-lg max-w-[20vw] min-w-[20vw] w-[20vw] min-h-full flex flex-col justify-between hover:shadow-xl transition-shadow duration-300">
+            <section id="study-material" class="bg-white  rounded-2xl shadow-lg max-w-[25vw] min-w-[25vw] w-[25vw] min-h-full flex flex-col justify-between hover:shadow-xl transition-shadow duration-300">
 
                 <img src="./assets/material.jpg" alt="Study Material" class="rounded-t-lg w-full max-h-[200px] min-h-[200px]  object-cover object-top ">
 
@@ -78,7 +78,7 @@ if (isset($_COOKIE['user_id'])) {
                 </div>
             </section>
 
-            <section id="timetable" class="bg-white  rounded-2xl shadow-lg max-w-[20vw] min-w-[20vw] w-[20vw] min-h-full flex flex-col justify-between hover:shadow-xl transition-shadow duration-300">
+            <section id="timetable" class="bg-white  rounded-2xl shadow-lg max-w-[25vw] min-w-[25vw] w-[25vw] min-h-full flex flex-col justify-between hover:shadow-xl transition-shadow duration-300">
 
                 <img src="./assets/timetable.jpg" class="rounded-t-lg w-full h-[200px] object-cover object-top ">
 
@@ -94,7 +94,7 @@ if (isset($_COOKIE['user_id'])) {
                 </div>
             </section>
 
-            <section id="curriculum" class="bg-white  rounded-2xl shadow-lg max-w-[20vw] min-w-[20vw] w-[20vw] min-h-full flex flex-col justify-between hover:shadow-xl transition-shadow duration-300">
+            <section id="curriculum" class="bg-white  rounded-2xl shadow-lg max-w-[25vw] min-w-[25vw] w-[25vw] min-h-full flex flex-col justify-between hover:shadow-xl transition-shadow duration-300">
 
                 <img src="./assets/material.jpg" alt="Curriculum" class="rounded-t-lg w-full h-[200px] min-h-[200px] object-cover object-top ">
 
@@ -110,7 +110,7 @@ if (isset($_COOKIE['user_id'])) {
                 </div>
             </section>
 
-            <section id="library" class="bg-white  rounded-2xl shadow-lg max-w-[20vw] min-w-[20vw] w-[20vw] min-h-full flex flex-col justify-between hover:shadow-xl transition-shadow duration-300">
+            <section id="library" class="bg-white  rounded-2xl shadow-lg max-w-[25vw] min-w-[25vw] w-[25vw] min-h-full flex flex-col justify-between hover:shadow-xl transition-shadow duration-300">
 
                 <img src="./assets/library.jpg" alt="Library" class="rounded-t-lg w-full h-[200px] min-h-[200px] object-cover object-top ">
 

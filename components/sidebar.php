@@ -1,4 +1,4 @@
-<!-- sidebar.php -->
+<!-- ./components/sidebar.php -->
 <aside class="w-fit pr-10 px-5 bg-[#00bbff] text-white h-screen p-4 space-y-4">
 
     <?php if ($user_role === 'faculty'): ?>

@@ -1,5 +1,5 @@
 <?php
-include_once 'config.php';
+include_once './utils/config.php';
 
 // Check if the form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
