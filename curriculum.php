@@ -48,7 +48,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $user_role === 'faculty') {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Curriculum Management</title>
+    <title>Curriculum </title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preload" href="https://fonts.googleapis.com/icon?family=Material+Icons" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <noscript>
@@ -65,7 +65,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $user_role === 'faculty') {
 
         <main class="py-8 px-6 overflow-y-scroll max-h-[calc(100vh-70px)] h-full w-full flex flex-col gap-6">
 
-            <h1 class="text-3xl font-bold mb-6">Curriculum Management</h1>
+            <h1 class="text-3xl font-bold mb-6">Curriculum</h1>
 
             <?php if ($user_role === 'faculty'): ?>
                 <h2 class="text-2xl">Add New Curriculum</h2>
@@ -101,7 +101,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $user_role === 'faculty') {
             $result = mysqli_query($conn, $curriculumQuery);
             ?>
 
-            <h2 class="text-2xl">Curriculum List</h2>
 
             <div class="flex flex-row gap-4 flex-wrap">
                 <?php if ($result && mysqli_num_rows($result) > 0): ?>

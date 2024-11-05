@@ -50,25 +50,28 @@ if (isset($_COOKIE['user_id'])) {
 
         <main class="py-8 px-6 overflow-y-scroll max-h-[calc(100vh-70px)] h-full w-full flex flex-wrap gap-6">
             <!-- Attendance Section -->
-            <section id="attendance" class="bg-white bg-zinc-200 p-6 rounded-lg max-w-[20vw] min-w-[20vw] w-[20vw] min-h-full">
-                <h2 class="text-2xl font-bold mb-4"><?= $user_role === 'faculty' ? 'Mark Attendance' : 'View Attendance' ?></h2>
-                <p><?= $user_role === 'faculty' ? 'Mark attendance for your classes.' : 'View your attendance records and history.' ?></p>
-                <a href="attendance.php" class="mt-4 bg-[#00bbff] text-white py-2 px-4 rounded hover:bg-[#3bcaff] inline-block">View</a>
-            </section>
+
+            <?php if ($user_role === 'faculty'): ?>
+                <section id="attendance" class="bg-white bg-zinc-200 p-6 rounded-lg max-w-[20vw] min-w-[20vw] w-[20vw] min-h-full">
+                    <h2 class="text-2xl font-bold mb-4"><?= $user_role === 'faculty' ? 'Mark Attendance' : 'View Attendance' ?></h2>
+                    <p><?= $user_role === 'faculty' ? 'Mark attendance for your classes.' : 'View your attendance records and history.' ?></p>
+                    <a href="attendance.php" class="mt-4 bg-[#00bbff] text-white py-2 px-4 rounded hover:bg-[#3bcaff] inline-block">View</a>
+                </section>
+            <?php endif; ?>
 
             <!-- Study Material Section -->
-            <section id="study-material" class="bg-white bg-zinc-200 p-6 rounded-lg max-w-[20vw] min-w-[20vw] w-[20vw] min-h-full">
+            <!-- <section id="study-material" class="bg-white bg-zinc-200 p-6 rounded-lg max-w-[20vw] min-w-[20vw] w-[20vw] min-h-full">
                 <h2 class="text-2xl font-bold mb-4"><?= $user_role === 'faculty' ? 'Upload Study Material' : 'Access Study Material' ?></h2>
                 <p><?= $user_role === 'faculty' ? 'Upload and manage study materials for your subjects.' : 'Access subject-wise study materials provided by your faculty.' ?></p>
                 <a href="study-material.php" class="mt-4 bg-[#00bbff] text-white py-2 px-4 rounded hover:bg-[#3bcaff] inline-block">View</a>
-            </section>
+            </section> -->
 
             <!-- Past Papers Section -->
-            <section id="past-papers" class="bg-white bg-zinc-200 p-6 rounded-lg max-w-[20vw] min-w-[20vw] w-[20vw] min-h-full">
+            <!-- <section id="past-papers" class="bg-white bg-zinc-200 p-6 rounded-lg max-w-[20vw] min-w-[20vw] w-[20vw] min-h-full">
                 <h2 class="text-2xl font-bold mb-4"><?= $user_role === 'faculty' ? 'Manage Past Papers' : 'Explore Past Papers' ?></h2>
                 <p><?= $user_role === 'faculty' ? 'Upload and manage past exam papers for your courses.' : 'Explore past exam papers for practice and review.' ?></p>
                 <a href="past-papers.php" class="mt-4 bg-[#00bbff] text-white py-2 px-4 rounded hover:bg-[#3bcaff] inline-block">View</a>
-            </section>
+            </section> -->
 
             <!-- Timetable Section -->
             <section id="timetable" class="bg-white bg-zinc-200 p-6 rounded-lg max-w-[20vw] min-w-[20vw] w-[20vw] min-h-full">
@@ -85,11 +88,11 @@ if (isset($_COOKIE['user_id'])) {
             </section>
 
             <!-- Assignments Section -->
-            <section id="assignments" class="bg-white bg-zinc-200 p-6 rounded-lg max-w-[20vw] min-w-[20vw] w-[20vw] min-h-full">
+            <!-- <section id="assignments" class="bg-white bg-zinc-200 p-6 rounded-lg max-w-[20vw] min-w-[20vw] w-[20vw] min-h-full">
                 <h2 class="text-2xl font-bold mb-4"><?= $user_role === 'faculty' ? 'Manage Assignments' : 'Assignments' ?></h2>
                 <p><?= $user_role === 'faculty' ? 'Create and manage assignments for your classes.' : 'Access and submit your assignments.' ?></p>
                 <a href="assignments.php" class="mt-4 bg-[#00bbff] text-white py-2 px-4 rounded hover:bg-[#3bcaff] inline-block">View</a>
-            </section>
+            </section> -->
 
             <!-- Library Section -->
             <section id="library" class="bg-white bg-zinc-200 p-6 rounded-lg max-w-[20vw] min-w-[20vw] w-[20vw] min-h-full">

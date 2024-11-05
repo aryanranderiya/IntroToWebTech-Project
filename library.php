@@ -75,7 +75,7 @@ $booksResult = mysqli_stmt_get_result($stmt);
 
         <main class="py-8 px-6 overflow-y-scroll max-h-[calc(100vh-70px)] h-full w-full flex flex-col gap-6">
 
-            <h1 class="text-3xl font-bold mb-6">Library Management</h1>
+            <h1 class="text-3xl font-bold mb-6">Library</h1>
 
             <?php if ($user_role === 'faculty'): ?>
                 <h2 class="text-2xl">Add New Book</h2>
@@ -102,7 +102,6 @@ $booksResult = mysqli_stmt_get_result($stmt);
                 </div>
             <?php endif; ?>
 
-            <h2 class="text-2xl">Books List</h2>
 
             <form method="POST" class="mb-4 flex items-center">
                 <input type="text" name="search" placeholder="Search books by title or author" class="border rounded-full rounded-r-none pl-4 w-full bg-gray-300 p-2 focus:outline-none focus:ring-2 h-[45px] focus:ring-blue-500" value="<?= htmlspecialchars($searchTerm) ?>">

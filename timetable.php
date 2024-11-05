@@ -47,7 +47,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $user_role === 'faculty') {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Timetable Management</title>
+    <title>Timetable </title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preload" href="https://fonts.googleapis.com/icon?family=Material+Icons" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <noscript>
@@ -64,7 +64,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $user_role === 'faculty') {
 
         <main class="py-8 px-6 overflow-y-scroll max-h-[calc(100vh-70px)] h-full w-full flex flex-col gap-6">
 
-            <h1 class="text-3xl font-bold mb-6">Timetable Management</h1>
+            <h1 class="text-3xl font-bold mb-6">Timetable</h1>
 
             <?php if ($user_role === 'faculty'): ?>
                 <h2 class="text-2xl">Add New Timetable Entry</h2>
@@ -91,7 +91,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $user_role === 'faculty') {
                 </div>
             <?php endif; ?>
 
-            <h2 class="text-2xl">Timetable List</h2>
 
             <div class="overflow-x-auto overflow-y-visible">
                 <table class="min-w-full bg-white border-gray-400 border-[1px]">
