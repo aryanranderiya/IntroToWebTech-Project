@@ -1,5 +1,4 @@
 <?php
-session_start();
 include 'config.php'; // Include your database connection file
 
 // Check user role (assuming the role is stored in session)
@@ -101,8 +100,6 @@ $booksResult = mysqli_stmt_get_result($stmt);
                         <button class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded transition duration-200" type="submit">Add Book</button>
                     </form>
                 </div>
-            <?php else: ?>
-                <p class="text-xl mb-4">You do not have permission to add books.</p>
             <?php endif; ?>
 
             <h2 class="text-2xl">Books List</h2>
