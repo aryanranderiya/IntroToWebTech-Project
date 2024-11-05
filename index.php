@@ -41,58 +41,12 @@ if (isset($_COOKIE['user_id'])) {
 <body class="bg-gray-100 text-gray-800 max-h-screen overflow-hidden">
 
     <!-- Navbar -->
-    <nav class="bg-[#00bbff] p-4 border-1 border-b border-white">
-        <div class="mx-auto flex justify-between items-center">
-            <h1 class="text-white text-2xl font-bold">University Portal</h1>
+    <?php include 'navbar.php'; ?>
 
-            <?php if ($username): ?> <!-- Check if username is set -->
-                <span class="text-gray-700">Welcome, <?= $username ?>!</span>
-                <a href="logout.php" class="text-gray-200 hover:text-white flex items-center font-semibold">
-                    <span class="material-icons mr-1">logout</span> Logout
-                </a>
-            <?php else: ?>
-                <div class="flex space-x-4">
-                    <a href="login.php" class="text-gray-200 hover:text-white flex items-center font-semibold">
-                        <span class="material-icons mr-1">login</span> Login
-                    </a>
-                    <a href="signup.php" class="text-[#00bbff] hover:bg-gray-200 flex items-center bg-white rounded-md p-2 font-semibold">
-                        <span class="material-icons mr-1">person_add</span> Sign Up
-                    </a>
-                </div>
-            <?php endif; ?>
-        </div>
-    </nav>
 
     <div class="mx-auto flex">
         <!-- Sidebar -->
-        <aside class="w-fit pr-10 px-5 bg-[#00bbff] text-white h-screen p-4 space-y-4">
-            <a href="attendance.php" class="block p-2 flex items-center hover:bg-[#3bcaff] rounded text-nowrap">
-                <span class="material-icons mr-2">check_circle</span>
-                <?php if ($user_role === 'faculty'): ?>
-                    Mark Attendance
-                <?php else: ?>
-                    View Attendance
-                <?php endif; ?>
-            </a>
-            <a href="study-material.php" class="block p-2 flex items-center hover:bg-[#3bcaff] rounded text-nowrap">
-                <span class="material-icons mr-2">menu_book</span> Study Material
-            </a>
-            <a href="past-papers.php" class="block p-2 flex items-center hover:bg-[#3bcaff] rounded text-nowrap">
-                <span class="material-icons mr-2">history_edu</span> Past Papers
-            </a>
-            <a href="timetable.php" class="block p-2 flex items-center hover:bg-[#3bcaff] rounded text-nowrap">
-                <span class="material-icons mr-2">schedule</span> Timetable
-            </a>
-            <a href="curriculum.php" class="block p-2 flex items-center hover:bg-[#3bcaff] rounded text-nowrap">
-                <span class="material-icons mr-2">book</span> Curriculum
-            </a>
-            <a href="assignments.php" class="block p-2 flex items-center hover:bg-[#3bcaff] rounded text-nowrap">
-                <span class="material-icons mr-2">assignment</span> Assignments
-            </a>
-            <a href="library.php" class="block p-2 flex items-center hover:bg-[#3bcaff] rounded text-nowrap">
-                <span class="material-icons mr-2">local_library</span> Library
-            </a>
-        </aside>
+        <?php include 'sidebar.php'; ?>
 
         <main class="py-8 px-6 overflow-y-scroll max-h-[calc(100vh-70px)] h-full w-full flex flex-wrap gap-6">
             <!-- Attendance Section -->
