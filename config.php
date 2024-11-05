@@ -17,9 +17,9 @@ if (!$conn) {
 $sql = "CREATE DATABASE IF NOT EXISTS $database";
 if (!mysqli_query($conn, $sql)) {
     echo "Error creating database: " . mysqli_error($conn) . "<br>";
-} 
+}
 // else {
-    // echo "Database created successfully<br>";
+// echo "Database created successfully<br>";
 // }
 
 // Close the initial connection
@@ -36,9 +36,10 @@ if (!$conn) {
 // SQL to create the users table if it doesn't exist
 $sql = "CREATE TABLE IF NOT EXISTS users (
     id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-    username VARCHAR(50) NOT NULL,
-    email VARCHAR(50) NOT NULL,
+    username VARCHAR(50) NOT NULL UNIQUE,
+    email VARCHAR(50) NOT NULL UNIQUE,
     password VARCHAR(255) NOT NULL,
+    role ENUM('faculty', 'student') DEFAULT 'student', 
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 )";
 
@@ -47,9 +48,8 @@ if (!mysqli_query($conn, $sql)) {
     echo "Error creating users table: " . mysqli_error($conn) . "<br>";
 }
 // else {
-    //  echo "Users table created successfully<br>";
+//  echo "Users table created successfully<br>";
 // }
 
 // Close the connection
 // mysqli_close($conn);
-?>
