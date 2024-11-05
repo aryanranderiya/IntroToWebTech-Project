@@ -1,26 +1,60 @@
+<?php
+include_once 'config.php';
+
+// Initialize variables
+$username = '';
+
+// Check if the user_id cookie is set
+if (isset($_COOKIE['user_id'])) {
+    $user_id = $_COOKIE['user_id'];
+
+    // Prepare and execute the SQL query to get the username
+    $stmt = mysqli_prepare($conn, "SELECT username FROM users WHERE id = ?");
+    mysqli_stmt_bind_param($stmt, "i", $user_id);
+    mysqli_stmt_execute($stmt);
+    $result = mysqli_stmt_get_result($stmt);
+
+    if (mysqli_num_rows($result) > 0) {
+        $row = mysqli_fetch_assoc($result);
+        $username = htmlspecialchars($row['username']); // Store the username safely
+    }
+
+    mysqli_stmt_close($stmt);
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>University Portal</title>
-      <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
+
 <body class="bg-gray-100 text-gray-800 max-h-screen overflow-hidden">
 
     <!-- Navbar -->
     <nav class="bg-[#00bbff] p-4 border-1 border-b border-white">
         <div class="mx-auto flex justify-between items-center">
             <h1 class="text-white text-2xl font-bold">University Portal</h1>
-            <div class="flex space-x-4">
-                <a href="login.php" class="text-gray-200 hover:text-white flex items-center  font-semibold">
-                    <span class="material-icons mr-1">login</span> Login
+
+            <?php if ($username): ?> <!-- Check if username is set -->
+                <span class="text-gray-700">Welcome, <?= $username ?>!</span>
+                <a href="logout.php" class="text-gray-200 hover:text-white flex items-center  font-semibold">
+                    <span class="material-icons mr-1">logout</span> Logout
                 </a>
-                <a href="signup.php" class="text-[#00bbff] hover:bg-gray-200 flex items-center bg-white rounded-md  p-2 font-semibold">
-                    <span class="material-icons mr-1">person_add</span> Sign Up
-                </a>
-            </div>
+            <?php else: ?>
+                <div class="flex space-x-4">
+                    <a href="login.php" class="text-gray-200 hover:text-white flex items-center  font-semibold">
+                        <span class="material-icons mr-1">login</span> Login
+                    </a>
+                    <a href="signup.php" class="text-[#00bbff] hover:bg-gray-200 flex items-center bg-white rounded-md  p-2 font-semibold">
+                        <span class="material-icons mr-1">person_add</span> Sign Up
+                    </a>
+                </div>
+            <?php endif; ?>
         </div>
     </nav>
 
@@ -109,7 +143,7 @@
             </section>
 
             <!-- Library Section -->
-            <section id="library"class="bg-white bg-zinc-200 p-6 rounded-lg  max-w-[20vw] min-w-[20vw] w-[20vw]  h-full">
+            <section id="library" class="bg-white bg-zinc-200 p-6 rounded-lg  max-w-[20vw] min-w-[20vw] w-[20vw]  h-full">
                 <h2 class="text-2xl font-bold mb-4">Library</h2>
                 <p>Access library resources and search for books.</p>
                 <a href="library.php" class="mt-4 bg-[#00bbff] text-white py-2 px-4 rounded hover:bg-blue-700 inline-block">View</a>
@@ -117,4 +151,5 @@
         </main>
     </div>
 </body>
+
 </html>
