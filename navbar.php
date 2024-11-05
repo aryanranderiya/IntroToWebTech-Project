@@ -27,7 +27,7 @@
 
     <nav class="bg-[#00bbff] p-4 border-1 border-b border-white">
         <div class="mx-auto flex justify-between items-center">
-            <a class="text-white text-2xl font-bold" href="index.php">University Portal</a>
+            <a class="text-white text-2xl font-bold hover:underline" href="index.php">University Portal</a>
 
             <?php if ($username): ?> <!-- Check if username is set -->
                 <span class="text-gray-700">Welcome, <?= $username ?>!</span>
