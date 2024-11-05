@@ -7,7 +7,7 @@ if ($_COOKIE['user_role'] !== 'faculty') {
 }
 
 // Handle attendance submission
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['attendance_date'])) {
     $attendance_date = isset($_POST['attendance_date']) ? $_POST['attendance_date'] : null;
     $attendances = $_POST['attendance'] ?? [];
 
@@ -43,6 +43,30 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
+// Handle attendance retrieval based on a selected date
+$attendance_records = [];
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['view_attendance_date'])) {
+    $view_attendance_date = $_POST['view_attendance_date'];
+
+    $fetchAttendanceQuery = "SELECT u.username, a.status FROM attendance a
+                             JOIN users u ON a.student_id = u.id
+                             WHERE a.attendance_date = ?";
+    $stmtFetch = mysqli_prepare($conn, $fetchAttendanceQuery);
+    mysqli_stmt_bind_param($stmtFetch, "s", $view_attendance_date);
+    mysqli_stmt_execute($stmtFetch);
+    $resultFetch = mysqli_stmt_get_result($stmtFetch);
+
+    if (mysqli_num_rows($resultFetch) > 0) {
+        while ($row = mysqli_fetch_assoc($resultFetch)) {
+            $attendance_records[] = $row;
+        }
+    } else {
+        echo "No attendance records found for the selected date.";
+    }
+
+    mysqli_stmt_close($stmtFetch);
+}
+
 // Fetch students
 $studentsQuery = "SELECT id, username FROM users WHERE role = 'student'";
 $studentsResult = mysqli_query($conn, $studentsQuery);
@@ -68,23 +92,17 @@ $studentsResult = mysqli_query($conn, $studentsQuery);
 
         .attendance-button:not(.selected) {
             background-color: #E5E7EB;
-            /* Light gray when not selected */
             color: #1F2937;
-            /* Dark gray text */
         }
 
         .attendance-button.selected {
             background-color: #10B981;
-            /* Green for present */
             color: white;
-            /* White text */
         }
 
         .attendance-button.absent.selected {
             background-color: #EF4444;
-            /* Red for absent */
             color: white;
-            /* White text */
         }
     </style>
 </head>
@@ -139,6 +157,41 @@ $studentsResult = mysqli_query($conn, $studentsQuery);
                     <button class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded transition duration-200 mt-4" type="submit">Save Changes</button>
                 </form>
             </div>
+
+            <!-- View Attendance by Date -->
+            <div class="bg-gray-200 border border-1 border-zinc-300 rounded-lg shadow p-6">
+                <h2 class="text-xl font-bold mb-4">View Attendance for a Specific Date</h2>
+                <form method="POST" id="viewAttendanceForm">
+                    <div class="mb-4">
+                        <label class="block mb-2 text-sm font-semibold" for="view_attendance_date">Select Date:</label>
+                        <input type="date" name="view_attendance_date" class="border rounded w-full p-2 focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                    </div>
+                    <button class="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded transition duration-200 mt-4" type="submit">View Attendance</button>
+                </form>
+
+                <?php if (!empty($attendance_records)): ?>
+                    <table class="min-w-full border-collapse border border-gray-200 bg-white mt-4">
+                        <thead>
+                            <tr>
+                                <th class="border border-gray-300 px-4 py-2">Student Name</th>
+                                <th class="border border-gray-300 px-4 py-2">Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php foreach ($attendance_records as $record): ?>
+                                <tr>
+                                    <td class="border border-gray-300 px-4 py-2"><?= htmlspecialchars($record['username']) ?></td>
+                                    <td class="border border-gray-300 px-4 py-2 <?php echo $record['status'] == "Present" ? 'bg-green-500 text-white' : 'bg-red-500 text-white'; ?>">
+                                        <?= htmlspecialchars($record['status'] ?? 'No Status') ?>
+                                    </td>
+
+                                </tr>
+                            <?php endforeach; ?>
+                        </tbody>
+                    </table>
+                <?php endif; ?>
+            </div>
+
         </main>
     </div>
 

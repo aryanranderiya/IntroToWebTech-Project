@@ -44,20 +44,30 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
-<body class="bg-zinc-200 flex items-center justify-center min-h-screen">
-    <div class="bg-white p-8 rounded-2xl shadow-xl w-full max-w-sm">
-        <h1 class="text-2xl font-bold text-[#00bbff] mb-6 text-center">Login</h1>
-        <?php if ($error_message): ?> <!-- Use $error_message instead of $loginError -->
-            <p class="text-red-500 mb-4"><?= htmlspecialchars($error_message) ?></p> <!-- Display error message -->
+<body class="bg-gradient-to-b from-white to-[#00bbff] flex items-center justify-center min-h-screen">
+    <div class="bg-white p-10 rounded-xl shadow-2xl w-full max-w-md">
+        <h1 class="text-3xl font-bold text-[#00bbff] mb-1 text-center">Welcome Back</h1>
+        <p class="text-sm text-gray-600 mb-8 text-center">Please login to your account</p>
+
+        <?php if ($error_message): ?>
+            <p class="text-red-500 mb-4 text-center"><?= htmlspecialchars($error_message) ?></p>
         <?php endif; ?>
-        <form action="login.php" method="POST">
-            <label class="block mb-2">Username</label>
-            <input type="text" name="username" class="w-full p-2 mb-4 border border-gray-300 rounded" required>
-            <label class="block mb-2">Password</label>
-            <input type="password" name="password" class="w-full p-2 mb-4 border border-gray-300 rounded" required>
-            <button type="submit" class="w-full bg-[#00bbff] text-white p-2 rounded hover:bg-[#3bcaff]">Login</button>
+
+        <form action="login.php" method="POST" class="space-y-6">
+            <div>
+                <label class="block mb-2 text-sm font-semibold text-gray-600">Username</label>
+                <input type="text" name="username" class="w-full p-3 rounded-lg border border-gray-300 focus:ring-[#00bbff] focus:border-[#00bbff]" placeholder="Enter your username" required>
+            </div>
+            <div>
+                <label class="block mb-2 text-sm font-semibold text-gray-600">Password</label>
+                <input type="password" name="password" class="w-full p-3 rounded-lg border border-gray-300 focus:ring-[#00bbff] focus:border-[#00bbff]" placeholder="Enter your password" required>
+            </div>
+            <button type="submit" class="w-full bg-[#00bbff] text-white py-3 rounded-lg font-semibold text-lg hover:bg-[#3bcaff] transition-colors duration-300">Login</button>
         </form>
-        <p class="mt-4 text-center">Don't have an account? <a href="signup.php" class="text-[#00bbff]">Sign up here</a></p>
+
+        <p class="mt-6 text-center text-sm text-gray-600">Don't have an account?
+            <a href="signup.php" class="text-[#00bbff] font-semibold hover:underline">Sign up here</a>
+        </p>
     </div>
 </body>
 

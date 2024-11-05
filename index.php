@@ -1,15 +1,12 @@
 <?php
 include_once 'config.php';
 
-// Initialize variables
 $username = '';
 $user_role = '';
 
-// Check if the user_id cookie is set
 if (isset($_COOKIE['user_id'])) {
     $user_id = $_COOKIE['user_id'];
 
-    // Prepare and execute the SQL query to get the username and role
     $stmt = mysqli_prepare($conn, "SELECT username, role FROM users WHERE id = ?");
     mysqli_stmt_bind_param($stmt, "i", $user_id);
     mysqli_stmt_execute($stmt);
@@ -17,8 +14,8 @@ if (isset($_COOKIE['user_id'])) {
 
     if (mysqli_num_rows($result) > 0) {
         $row = mysqli_fetch_assoc($result);
-        $username = htmlspecialchars($row['username']); // Store the username safely
-        $user_role = $row['role']; // Store the user role
+        $username = htmlspecialchars($row['username']);
+        $user_role = $row['role'];
     }
 
     mysqli_stmt_close($stmt);
@@ -40,70 +37,97 @@ if (isset($_COOKIE['user_id'])) {
 
 <body class="bg-gray-100 text-gray-800 max-h-screen overflow-hidden">
 
-    <!-- Navbar -->
     <?php include 'navbar.php'; ?>
 
-
     <div class="mx-auto flex">
-        <!-- Sidebar -->
-        <?php include 'sidebar.php'; ?>
 
-        <main class="py-8 px-6 overflow-y-scroll max-h-[calc(100vh-70px)] h-full w-full flex flex-wrap gap-6">
-            <!-- Attendance Section -->
+        <?php include 'sidebar.php'; ?>
+        <main class="py-8 px-6 overflow-y-scroll max-h-[calc(100vh-70px)] h-full w-full flex flex-wrap gap-6 bg-zinc-100">
 
             <?php if ($user_role === 'faculty'): ?>
-                <section id="attendance" class="bg-white bg-zinc-200 p-6 rounded-lg max-w-[20vw] min-w-[20vw] w-[20vw] min-h-full">
-                    <h2 class="text-2xl font-bold mb-4"><?= $user_role === 'faculty' ? 'Mark Attendance' : 'View Attendance' ?></h2>
-                    <p><?= $user_role === 'faculty' ? 'Mark attendance for your classes.' : 'View your attendance records and history.' ?></p>
-                    <a href="attendance.php" class="mt-4 bg-[#00bbff] text-white py-2 px-4 rounded hover:bg-[#3bcaff] inline-block">View</a>
+                <section id="attendance" class="bg-white  rounded-lg shadow-lg max-w-[20vw] min-w-[20vw] w-[20vw] min-h-full flex flex-col justify-between hover:shadow-xl transition-shadow duration-300">
+
+                    <img src="./assets/attendance.png" alt="Attendance" class="rounded-t-lg w-full max-h-[200px] h-[200px] object-cover object-top ">
+
+                    <div class="p-6 flex flex-col justify-between h-full">
+                        <div>
+                            <h2 class="text-2xl font-bold mb-4 flex items-center">
+                                <span class="material-icons mr-2">check_circle</span>
+                                <?= $user_role === 'faculty' ? 'Mark Attendance' : 'View Attendance' ?>
+                            </h2>
+                            <p><?= $user_role === 'faculty' ? 'Mark attendance for your classes.' : 'View your attendance records and history.' ?></p>
+                        </div>
+                        <a href="attendance.php" class="mt-4 bg-[#00bbff] text-white py-2 px-4 rounded hover:bg-[#3bcaff] inline-block self-end transition-colors duration-300">View</a>
+                    </div>
                 </section>
             <?php endif; ?>
 
-            <!-- Study Material Section -->
-            <!-- <section id="study-material" class="bg-white bg-zinc-200 p-6 rounded-lg max-w-[20vw] min-w-[20vw] w-[20vw] min-h-full">
-                <h2 class="text-2xl font-bold mb-4"><?= $user_role === 'faculty' ? 'Upload Study Material' : 'Access Study Material' ?></h2>
-                <p><?= $user_role === 'faculty' ? 'Upload and manage study materials for your subjects.' : 'Access subject-wise study materials provided by your faculty.' ?></p>
-                <a href="study-material.php" class="mt-4 bg-[#00bbff] text-white py-2 px-4 rounded hover:bg-[#3bcaff] inline-block">View</a>
-            </section> -->
+            <section id="study-material" class="bg-white  rounded-lg shadow-lg max-w-[20vw] min-w-[20vw] w-[20vw] min-h-full flex flex-col justify-between hover:shadow-xl transition-shadow duration-300">
 
-            <!-- Past Papers Section -->
-            <!-- <section id="past-papers" class="bg-white bg-zinc-200 p-6 rounded-lg max-w-[20vw] min-w-[20vw] w-[20vw] min-h-full">
-                <h2 class="text-2xl font-bold mb-4"><?= $user_role === 'faculty' ? 'Manage Past Papers' : 'Explore Past Papers' ?></h2>
-                <p><?= $user_role === 'faculty' ? 'Upload and manage past exam papers for your courses.' : 'Explore past exam papers for practice and review.' ?></p>
-                <a href="past-papers.php" class="mt-4 bg-[#00bbff] text-white py-2 px-4 rounded hover:bg-[#3bcaff] inline-block">View</a>
-            </section> -->
+                <img src="./assets/material.jpg" alt="Study Material" class="rounded-t-lg w-full max-h-[200px] min-h-[200px]  object-cover object-top ">
 
-            <!-- Timetable Section -->
-            <section id="timetable" class="bg-white bg-zinc-200 p-6 rounded-lg max-w-[20vw] min-w-[20vw] w-[20vw] min-h-full">
-                <h2 class="text-2xl font-bold mb-4"><?= $user_role === 'faculty' ? 'View Your Classes' : 'Check Your Timetable' ?></h2>
-                <p><?= $user_role === 'faculty' ? 'View the schedule for your classes.' : 'Check your weekly schedule and upcoming classes.' ?></p>
-                <a href="timetable.php" class="mt-4 bg-[#00bbff] text-white py-2 px-4 rounded hover:bg-[#3bcaff] inline-block">View</a>
+                <div class="p-6 flex flex-col justify-between h-full">
+                    <div>
+                        <h2 class="text-2xl font-bold mb-4 flex items-center">
+                            <span class="material-icons mr-2">school</span>
+                            <?= $user_role === 'faculty' ? 'Upload Study Material' : 'Access Study Material' ?>
+                        </h2>
+                        <p><?= $user_role === 'faculty' ? 'Upload and manage study materials for your subjects.' : 'Access subject-wise study materials provided by your faculty.' ?></p>
+                    </div>
+                    <a href="study-material.php" class="mt-4 bg-[#00bbff] text-white py-2 px-4 rounded hover:bg-[#3bcaff] inline-block self-end transition-colors duration-300">View</a>
+                </div>
             </section>
 
-            <!-- Curriculum Section -->
-            <section id="curriculum" class="bg-white bg-zinc-200 p-6 rounded-lg max-w-[20vw] min-w-[20vw] w-[20vw] min-h-full">
-                <h2 class="text-2xl font-bold mb-4"><?= $user_role === 'faculty' ? 'View Curriculum for Your Courses' : 'View Your Curriculum' ?></h2>
-                <p><?= $user_role === 'faculty' ? 'Manage the curriculum for your courses and subjects.' : 'View your course curriculum and requirements.' ?></p>
-                <a href="curriculum.php" class="mt-4 bg-[#00bbff] text-white py-2 px-4 rounded hover:bg-[#3bcaff] inline-block">View</a>
+            <section id="timetable" class="bg-white  rounded-lg shadow-lg max-w-[20vw] min-w-[20vw] w-[20vw] min-h-full flex flex-col justify-between hover:shadow-xl transition-shadow duration-300">
+
+                <img src="./assets/timetable.jpg" class="rounded-t-lg w-full h-[200px] object-cover object-top ">
+
+                <div class="p-6 flex flex-col justify-between h-full">
+                    <div>
+                        <h2 class="text-2xl font-bold mb-4 flex items-center">
+                            <span class="material-icons mr-2">schedule</span>
+                            <?= $user_role === 'faculty' ? 'View Your Classes' : 'Check Your Timetable' ?>
+                        </h2>
+                        <p><?= $user_role === 'faculty' ? 'View the schedule for your classes.' : 'Check your weekly schedule and upcoming classes.' ?></p>
+                    </div>
+                    <a href="timetable.php" class="mt-4 bg-[#00bbff] text-white py-2 px-4 rounded hover:bg-[#3bcaff] inline-block self-end transition-colors duration-300">View</a>
+                </div>
             </section>
 
-            <!-- Assignments Section -->
-            <!-- <section id="assignments" class="bg-white bg-zinc-200 p-6 rounded-lg max-w-[20vw] min-w-[20vw] w-[20vw] min-h-full">
-                <h2 class="text-2xl font-bold mb-4"><?= $user_role === 'faculty' ? 'Manage Assignments' : 'Assignments' ?></h2>
-                <p><?= $user_role === 'faculty' ? 'Create and manage assignments for your classes.' : 'Access and submit your assignments.' ?></p>
-                <a href="assignments.php" class="mt-4 bg-[#00bbff] text-white py-2 px-4 rounded hover:bg-[#3bcaff] inline-block">View</a>
-            </section> -->
+            <section id="curriculum" class="bg-white  rounded-lg shadow-lg max-w-[20vw] min-w-[20vw] w-[20vw] min-h-full flex flex-col justify-between hover:shadow-xl transition-shadow duration-300">
 
-            <!-- Library Section -->
-            <section id="library" class="bg-white bg-zinc-200 p-6 rounded-lg max-w-[20vw] min-w-[20vw] w-[20vw] min-h-full">
-                <h2 class="text-2xl font-bold mb-4"><?= $user_role === 'faculty' ? 'Manage Library Resources' : 'Library' ?></h2>
-                <p><?= $user_role === 'faculty' ? 'Manage and update library resources for your students.' : 'Explore the university library resources.' ?></p>
-                <a href="library.php" class="mt-4 bg-[#00bbff] text-white py-2 px-4 rounded hover:bg-[#3bcaff] inline-block">View</a>
+                <img src="./assets/material.jpg" alt="Curriculum" class="rounded-t-lg w-full h-[200px] min-h-[200px] object-cover object-top ">
+
+                <div class="p-6 flex flex-col justify-between h-full">
+                    <div>
+                        <h2 class="text-2xl font-bold mb-4 flex items-center">
+                            <span class="material-icons mr-2">book</span>
+                            <?= $user_role === 'faculty' ? 'View Curriculum for Your Courses' : 'View Your Curriculum' ?>
+                        </h2>
+                        <p><?= $user_role === 'faculty' ? 'Manage the curriculum for your courses and subjects.' : 'View your course curriculum and requirements.' ?></p>
+                    </div>
+                    <a href="curriculum.php" class="mt-4 bg-[#00bbff] text-white py-2 px-4 rounded hover:bg-[#3bcaff] inline-block self-end transition-colors duration-300">View</a>
+                </div>
+            </section>
+
+            <section id="library" class="bg-white  rounded-lg shadow-lg max-w-[20vw] min-w-[20vw] w-[20vw] min-h-full flex flex-col justify-between hover:shadow-xl transition-shadow duration-300">
+
+                <img src="./assets/library.jpg" alt="Library" class="rounded-t-lg w-full h-[200px] min-h-[200px] object-cover object-top ">
+
+                <div class="p-6 flex flex-col justify-between h-full">
+                    <div>
+                        <h2 class="text-2xl font-bold mb-4 flex items-center">
+                            <span class="material-icons mr-2">library_books</span>
+                            <?= $user_role === 'faculty' ? 'Manage Library Resources' : 'Library' ?>
+                        </h2>
+                        <p><?= $user_role === 'faculty' ? 'Manage and update library resources for your students.' : 'Explore the university library resources.' ?></p>
+                    </div>
+                    <a href="library.php" class="mt-4 bg-[#00bbff] text-white py-2 px-4 rounded hover:bg-[#3bcaff] inline-block self-end transition-colors duration-300">View</a>
+                </div>
             </section>
         </main>
 
     </div>
-
 </body>
 
 </html>
